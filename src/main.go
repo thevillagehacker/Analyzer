@@ -16,7 +16,7 @@ const (
 
 func main() {
 	banner := `
-	    THEVILLAGEHACKER SECURITY
+	    THE VILLAGEHACKER SECURITY
 	https://twitter.com/thevillagehackr                                              
    `
    
