@@ -1,12 +1,13 @@
 package main
 
 import (
+    "bufio"
     "fmt"
+    "io"
     "os"
     "path/filepath"
     "sync"
-    "bufio"
-    "io"
+    "time"
 )
 
 const (
@@ -33,11 +34,16 @@ func main() {
 
     root := os.Args[1]
 
+    startTime := time.Now()
+
     numDirs, numFiles, numLines, extCounts, errCount := countItems(root)
+
+    elapsedTime := time.Since(startTime)
 
     fmt.Printf("[+] Number of directories: %s%d%s\n", ColorGreen, numDirs, ColorReset)
     fmt.Printf("[+] Number of files: %s%d%s\n", ColorGreen, numFiles, ColorReset)
     fmt.Printf("[+] Number of lines of code: %s%d%s\n", ColorGreen, numLines, ColorReset)
+    fmt.Printf("[+] Time taken: %s%s%s\n", ColorGreen, elapsedTime, ColorReset)
 
     for _, err := range errCount {
         fmt.Printf("%s\n", err)
