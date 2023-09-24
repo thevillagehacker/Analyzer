@@ -22,7 +22,7 @@ var extCountsMutex sync.Mutex
 func main() {
     banner := `
         THE VILLAGEHACKER SECURITY
-    https://twitter.com/thevillagehackr                                              
+    https://twitter.com/thevillagehackr
    `
 
     fmt.Println(banner)
@@ -48,9 +48,9 @@ func main() {
     for _, err := range errCount {
         fmt.Printf("%s\n", err)
     }
-    fmt.Println("--------------------------")
-    fmt.Printf("%s[*] File extension counts:%s\n", ColorYellow, ColorReset)
-    fmt.Println("--------------------------")
+    fmt.Println("----------------------------------------")
+    fmt.Printf("%s[*] Lines of Code w.r.t File Extensions:%s\n", ColorYellow, ColorReset)
+    fmt.Println("----------------------------------------")
     for ext, count := range extCounts {
         fmt.Printf("%s: %s%d%s\n", ext, ColorGreen, count, ColorReset)
     }
@@ -105,7 +105,7 @@ func countItems(root string) (int, int, int, map[string]int, []error) {
                 ext := filepath.Ext(path)
                 if ext != "" {
                     extCountsMutex.Lock()
-                    extCounts[ext]++
+                    extCounts[ext] += lines // Increment line count by lines read from the file
                     extCountsMutex.Unlock()
                 }
 
